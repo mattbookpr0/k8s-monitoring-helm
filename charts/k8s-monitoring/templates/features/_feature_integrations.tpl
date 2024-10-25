@@ -72,14 +72,15 @@
 {{- if $metricIntegrations }}
   {{- $metricDestinations := include "features.integrations.destinations.metrics" . | fromYamlArray }}
   {{- include "destinations.validate_destination_list" (dict "destinations" $metricDestinations "type" "metrics" "ecosystem" "prometheus" "feature" $featureName) }}
-  {{- include "collectors.require_collector" (dict "Values" $.Values "name" "alloy-metrics" "feature" $featureName) }}
 {{- end }}
 
 {{- $logIntegrations := include "feature.integrations.configured.logs" (dict "Values" .Values.integrations) | fromYamlArray }}
 {{- if $logIntegrations }}
   {{- $logDestinations := include "features.integrations.destinations.logs" . | fromYamlArray }}
   {{- include "destinations.validate_destination_list" (dict "destinations" $logDestinations "type" "log" "ecosystem" "loki" "feature" $featureName) }}
-  {{- include "collectors.require_collector" (dict "Values" $.Values "name" "alloy-logs" "feature" $featureName) }}
 {{- end }}
+{{- range $collector := include "features.integrations.collectors" . | fromYamlArray }}
+  {{- include "collectors.require_collector" (dict "Values" $.Values "name" $collector "feature" $featureName) }}
+{{- end -}}
 {{- end }}
 {{- end }}
