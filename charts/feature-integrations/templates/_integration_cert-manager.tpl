@@ -17,7 +17,7 @@ declare "cert_manager_integration" {
   }
 
   {{- range $instance := (index $.Values "cert-manager").instances }}
-    {{- include "integrations.cert-manager.include.metrics" (dict "integration" $instance "Values" $.Values "Files" $.Files) | nindent 2 }}
+    {{- include "integrations.cert-manager.include.metrics" (deepCopy $ | merge (dict "integration" $instance)) | nindent 2 }}
   {{- end }}
 }
 {{- end }}
@@ -26,7 +26,7 @@ declare "cert_manager_integration" {
 {{/* Inputs: integration (cert-manager integration definition), Values (all values), Files (Files object) */}}
 {{- define "integrations.cert-manager.include.metrics" }}
 {{- $defaultValues := "integrations/cert-manager-values.yaml" | .Files.Get | fromYaml }}
-{{- with merge .integration $defaultValues }}
+{{- with deepCopy .integration | merge $defaultValues }}
 {{- $metricAllowList := .metricsTuning.includeMetrics }}
 {{- $metricDenyList := .metricsTuning.excludeMetrics }}
 {{- $labelSelectors := list }}
