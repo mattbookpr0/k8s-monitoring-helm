@@ -19,7 +19,7 @@
 {{- $destinations := include "features.integrations.destinations.metrics" . | fromYamlArray }}
 {{- $integrations := include "feature.integrations.configured.metrics" (dict "Values" .Values.integrations) | fromYamlArray }}
 {{- range $integrationType := $integrations }}
-  {{- include (printf "integrations.%s.module.metrics" $integrationType) (dict "Values" $.Values.integrations "Files" $.Subcharts.integrations.Files) | indent 0 }}
+  {{- include (printf "integrations.%s.module.metrics" $integrationType) (dict "Chart" $.Subcharts.integrations.Chart "Values" $.Values.integrations "Files" $.Subcharts.integrations.Files "Release" $.Release) | indent 0 }}
 {{ include "helper.alloy_name" $integrationType }}_integration "integration" {
   metrics_destinations = [
     {{ include "destinations.alloy.targets" (dict "destinations" $.Values.destinations "names" $destinations "type" "metrics" "ecosystem" "prometheus") | indent 4 | trim }}
