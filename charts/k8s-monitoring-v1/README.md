@@ -370,7 +370,7 @@ The Prometheus and Loki services may be hosted on the same cluster, or remotely 
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| externalServices.tempo.authMode | string | `"basic"` | one of "none", "basic", "bearerToken" |
+| externalServices.tempo.authMode | string | `"basic"` | one of "none", "basic", "oauth2", "bearerToken" |
 | externalServices.tempo.basicAuth.password | string | `""` | Tempo basic auth password |
 | externalServices.tempo.basicAuth.passwordKey | string | `"password"` | The key for the password property in the secret |
 | externalServices.tempo.basicAuth.username | string | `""` | Tempo basic auth username |
@@ -381,6 +381,14 @@ The Prometheus and Loki services may be hosted on the same cluster, or remotely 
 | externalServices.tempo.extraHeadersFrom | object | `{}` | Extra headers to be set when sending metrics through a dynamic reference. All values are treated as raw strings and not quoted. |
 | externalServices.tempo.host | string | `""` | Tempo host where traces will be sent |
 | externalServices.tempo.hostKey | string | `"host"` | The key for the host property in the secret |
+| externalServices.tempo.oauth2.clientId | string | `""` | Tempo OAuth2 client ID |
+| externalServices.tempo.oauth2.clientIdKey | string | `"id"` | The key for the client ID property in the secret |
+| externalServices.tempo.oauth2.clientSecret | string | `""` | Tempo OAuth2 client secret |
+| externalServices.tempo.oauth2.clientSecretFile | string | `""` | File containing the OAuth2 client secret. |
+| externalServices.tempo.oauth2.clientSecretKey | string | `"secret"` | The key for the client secret property in the secret |
+| externalServices.tempo.oauth2.endpointParams | object | `{}` | Tempo OAuth2 endpoint parameters |
+| externalServices.tempo.oauth2.scopes | list | `[]` | List of scopes to authenticate with. |
+| externalServices.tempo.oauth2.tokenURL | string | `""` | URL to fetch the token from. |
 | externalServices.tempo.protocol | string | `"otlp"` | The type of server protocol for writing metrics Options:   * "otlp" will use OTLP   * "otlphttp" will use OTLP HTTP |
 | externalServices.tempo.readBufferSize | string | `""` | Size of the read buffer the gRPC client to use for reading server responses. |
 | externalServices.tempo.searchEndpoint | string | `"/api/search"` | Tempo search endpoint. |

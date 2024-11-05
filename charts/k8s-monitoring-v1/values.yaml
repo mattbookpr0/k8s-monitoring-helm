@@ -464,7 +464,7 @@ externalServices:
     # @section -- External Services (Tempo)
     tenantIdKey: tenantId
 
-    # -- one of "none", "basic", "bearerToken"
+    # -- one of "none", "basic", "oauth2", "bearerToken"
     # @section -- External Services (Tempo)
     authMode: basic
 
@@ -482,6 +482,34 @@ externalServices:
       # -- The key for the password property in the secret
       # @section -- External Services (Tempo)
       passwordKey: password
+
+    # Authenticate to Tempo using OAuth2
+    # @section -- External Services (Tempo)
+    oauth2:
+      # -- Tempo OAuth2 client ID
+      # @section -- External Services (Tempo)
+      clientId: ""
+      # -- The key for the client ID property in the secret
+      # @section -- External Services (Tempo)
+      clientIdKey: id
+      # -- Tempo OAuth2 client secret
+      # @section -- External Services (Tempo)
+      clientSecret: ""
+      # -- The key for the client secret property in the secret
+      # @section -- External Services (Tempo)
+      clientSecretKey: secret
+      # -- File containing the OAuth2 client secret.
+      # @section -- External Services (Tempo)
+      clientSecretFile: ""
+      # -- Tempo OAuth2 endpoint parameters
+      # @section -- External Services (Tempo)
+      endpointParams: {}
+      # -- List of scopes to authenticate with.
+      # @section -- External Services (Tempo)
+      scopes: []
+      # -- URL to fetch the token from.
+      # @section -- External Services (Tempo)
+      tokenURL: ""
 
     # Authenticate to Tempo using bearerToken
     bearerToken:

@@ -817,6 +817,7 @@
                             "enum": [
                                 "none",
                                 "basic",
+                                "oauth2",
                                 "bearerToken"
                             ]
                         },
@@ -862,6 +863,35 @@
                         },
                         "hostKey": {
                             "type": "string"
+                        },
+                        "oauth2": {
+                            "type": "object",
+                            "properties": {
+                                "clientId": {
+                                    "type": "string"
+                                },
+                                "clientIdKey": {
+                                    "type": "string"
+                                },
+                                "clientSecret": {
+                                    "type": "string"
+                                },
+                                "clientSecretFile": {
+                                    "type": "string"
+                                },
+                                "clientSecretKey": {
+                                    "type": "string"
+                                },
+                                "endpointParams": {
+                                    "type": "object"
+                                },
+                                "scopes": {
+                                    "type": "array"
+                                },
+                                "tokenURL": {
+                                    "type": "string"
+                                }
+                            }
                         },
                         "protocol": {
                             "type": "string"
